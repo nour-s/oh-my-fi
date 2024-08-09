@@ -17,3 +17,6 @@ class ExpenseInDB(ExpenseBase):
 
     class Config:
         orm_mode = True
+
+class ExpenseResponse:
+    pass
