@@ -6,3 +6,6 @@ pydantic
 alembic
 passlib
 python-multipart
+pydantic-settings
+sqlalchemy_utils
+dependency_injector @ git+https://github.com/anton-petrov/python-dependency-injector@master
