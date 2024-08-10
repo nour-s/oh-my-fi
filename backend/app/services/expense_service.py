@@ -1,11 +1,11 @@
 from sqlalchemy.orm import Session
-from ..db.repositories.expense_repository import ExpenseRepository
-from ..schemas.expense import ExpenseCreate, ExpenseUpdate, ExpenseInDB
+
+from app.api.schemas.expense_schema import ExpenseCreate, ExpenseUpdate
+from infra.repositories.expense_repository import ExpenseRepository
 
 class ExpenseService:
-    def __init__(self, db: Session):
-        self.db = db
-        self.expense_repository = ExpenseRepository(db)
+    def __init__(self, expense_repository: ExpenseRepository):
+        self.expense_repository = expense_repository
 
     def create_expense(self, expense: ExpenseCreate, user_id: int):
         return self.expense_repository.create_expense(

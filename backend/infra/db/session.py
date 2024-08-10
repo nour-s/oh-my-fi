@@ -3,6 +3,7 @@ from sqlalchemy.orm import sessionmaker
 
 from app.core.config import settings
 from sqlalchemy import create_engine
+from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from app.core.config import settings
 
@@ -13,6 +14,9 @@ def get_engine():
     global engine
     if engine is None:
         engine = create_engine(settings.db.DATABASE_URL)
+        Base = declarative_base()
+        Base.create_all()
+
     return engine
 
 def get_session() -> sessionmaker:
