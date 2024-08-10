@@ -1,12 +1,16 @@
 from sqlalchemy.orm import Session
 from typing import List
+from fastapi import Depends
+from app.domain.income import Income
 
-from ..db.repositories.income_repository import IncomeRepository
-from ..db.models.income import Income
+from infra.repositories.income_repository import IncomeRepository
+
+# Assuming IncomeRepository is imported from the appropriate module
+
 
 class IncomeService:
-    def __init__(self, db: Session):
-        self.income_repository = IncomeRepository(db)
+    def __init__(self, income_repository: IncomeRepository = Depends()):
+        self.income_repository = income_repository
 
     def create_income(self, title: str, amount: float, source: str, user_id: int) -> Income:
         return self.income_repository.create_income(title=title, amount=amount, source=source, user_id=user_id)

@@ -1,5 +1,6 @@
 from sqlalchemy.orm import Session
-from ..db.models.income import Income
+
+from app.domain.income import Income
 
 class IncomeRepository:
     def __init__(self, db: Session):
