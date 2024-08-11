@@ -6,6 +6,6 @@ from infra.repositories.expense_repository import ExpenseRepository
 class AppContainer(containers.DeclarativeContainer):
     wiring_config = containers.WiringConfiguration(modules=["app.api.endpoints.expenses_endpoints"])
 
-    db_session = providers.Singleton(get_db_session)
+    db_session = providers.Resource(get_db_session)
     expense_repository = providers.Factory(ExpenseRepository, db=db_session)
     expense_service = providers.Factory(ExpenseService, expense_repository=expense_repository)

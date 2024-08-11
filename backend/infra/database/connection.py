@@ -19,10 +19,5 @@ engine = get_engine()
 SessionFactory = sessionmaker(autocommit=False, autoflush=False, expire_on_commit=False, bind=engine)
 
 
-@contextmanager
 def get_db_session():
-    db = SessionFactory()
-    try:
-        yield db
-    finally:
-        db.close()
+    return SessionFactory()
